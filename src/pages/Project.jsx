@@ -1,20 +1,120 @@
 const PROJECTS = [
   {
-    title: "E-commerce Platform",
-    description: "React və Tailwind ilə hazırlanmış tam funksional online mağaza.",
-    tags: ["React", "Tailwind", "API"],
+    id: 1,
+    title: "Superfon",
+    description: "Div Academy Final Project",
+    tags: ["React", "Tailwind", "API", "Node"],
+    url: "https://div-superfon-m8vg.vercel.app/",
   },
   {
-    title: "Task Manager App",
-    description: "Sürüklə-burax funksiyalı tapşırıq idarəetmə tətbiqi.",
-    tags: ["React", "LocalStorage"],
+    id: 2,
+    title: "YerTap",
+    description: "Aradığınız hər bir yeri asanlıqla tapın",
+    tags: ["React"],
+    url: "https://yer-tap.vercel.app/",
   },
   {
-    title: "Portfolio Website",
-    description: "Animasiyalı, responsiv şəxsi portfolio saytı.",
+    id: 3,
+    title: "Bigspring",
+    description: "Simple page.",
+    tags: ["Js", "Tailwind"],
+    url: "https://bigspring-five.vercel.app/",
+  },
+  {
+    id: 4,
+    title: "Bigspring",
+    description: "JavaScript-product-filter",
+    tags: ["Js", "Tailwind"],
+    url: "https://javascript-product-filter.vercel.app/",
+  },
+  {
+    id: 5,
+    title: "Calculator",
+    description: "Calculate-discounted",
+    tags: ["Js", "Tailwind"],
+    url: "https://task-calculate-discounted-product-p.vercel.app/",
+  },
+  {
+    id: 6,
+    title: "Tropika",
+    description: "Sade single page",
+    tags: ["Js", "Tailwind"],
+    url: "https://tropika-pied.vercel.app/",
+  },
+  {
+    id: 7,
+    title: "Pagination",
+    description: "Pagination",
+    tags: ["Js", "Tailwind"],
+    url: "https://js-pagination-app.vercel.app/",
+  },
+  {
+    id: 8,
+    title: "Login-verification",
+    description: "Login-verification",
+    tags: ["Js", "Tailwind"],
+    url: "https://javascript-login-verification2.vercel.app/",
+  },
+  {
+    id: 8,
+    title: "Avers",
+    description: "Aver daxilinde admin panel qosulmusdur",
+    tags: ["Js", "Tailwind"],
+    url: "https://avers-page-v3ch.vercel.app/",
+  },
+  {
+    id: 9,
+    title: "Avers",
+    description: "Aver daxilinde admin panel qosulmusdur",
+    tags: ["Js", "Tailwind"],
+    url: "https://avers-page-v3ch.vercel.app/",
+  },
+  {
+    id: 10,
+    title: "Funksional sayt",
+    description: "Add to cart wishlist islekdir",
+    tags: ["Js", "Tailwind"],
+    url: "https://site1-functionality.vercel.app/",
+  },
+  {
+    id: 11,
+    title: "Abb kalkulyator",
+    description: "Js Task",
+    tags: ["Js", "Tailwind"],
+    url: "https://abb-calculator-navy.vercel.app/",
+  },
+  {
+    id: 12,
+    title: "Property",
+    description: "Kurs Css imtahani",
+    tags: ["Js", "Tailwind"],
+    url: "https://property-carousel.vercel.app/",
+  },
+  {
+    id: 13,
+    title: "Health-center",
+    description: "Kurs Css Task",
+    tags: ["Html", "Css"],
+    url: "https://health-center-task2.vercel.app/",
+  },
+  {
+    id: 14,
+    title: "Dento",
+    description: "Kurs Css Task",
+    tags: ["Html", "Css"],
+    url: "https://dento-1.vercel.app/",
+  },
+  {
+    id: 15,
+    title: "Ingress",
+    description: "Ingress Academy 2023 Final Project",
     tags: ["React", "Tailwind"],
+    url: "https://ingress-ac-final-project.vercel.app/",
   },
 ];
+function getScreenshotUrl(url) {
+  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=600`;
+}
 
 function Projects() {
   return (
@@ -27,15 +127,19 @@ function Projects() {
           Seçilmiş <span className="text-emerald-400">işlər</span>
         </h2>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3 ">
           {PROJECTS.map((project) => (
             <div
               key={project.title}
               className="group rounded-2xl border border-white/10 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2"
               style={{ backgroundColor: "rgba(255,255,255,.05)" }}
             >
-              <div className="mb-4 h-36 rounded-xl bg-gradient-to-br from-emerald-400/20 via-cyan-400/20 to-sky-500/20" />
-
+              <img
+                src={getScreenshotUrl(project.url)}
+                alt={`${project.title} layihəsinin ekran görüntüsü`}
+                className="mb-4 h-36 w-full rounded-xl object-cover cursor-pointer"
+                loading="lazy"
+              />
               <h3 className="mb-2 text-xl font-bold text-white">
                 {project.title}
               </h3>
@@ -55,9 +159,9 @@ function Projects() {
                 ))}
               </div>
 
-              <button className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300">
+              <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300 cursor-pointer">
                 Ətraflı bax →
-              </button>
+              </a>
             </div>
           ))}
         </div>

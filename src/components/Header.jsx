@@ -16,7 +16,12 @@ const CODE_LINES = [
   { indent: 0, text: "};" },
 ];
 
-function useTypewriter(phrases, typeSpeed = 55, deleteSpeed = 70, pause = 1200) {
+function useTypewriter(
+  phrases,
+  typeSpeed = 55,
+  deleteSpeed = 70,
+  pause = 1200,
+) {
   const [text, setText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
@@ -26,11 +31,17 @@ function useTypewriter(phrases, typeSpeed = 55, deleteSpeed = 70, pause = 1200) 
     let timeout;
 
     if (!deleting && text.length < current.length) {
-      timeout = setTimeout(() => setText(current.slice(0, text.length + 1)), typeSpeed);
+      timeout = setTimeout(
+        () => setText(current.slice(0, text.length + 1)),
+        typeSpeed,
+      );
     } else if (!deleting && text.length === current.length) {
       timeout = setTimeout(() => setDeleting(true), pause);
     } else if (deleting && text.length > 0) {
-      timeout = setTimeout(() => setText(current.slice(0, text.length - 1)), deleteSpeed);
+      timeout = setTimeout(
+        () => setText(current.slice(0, text.length - 1)),
+        deleteSpeed,
+      );
     } else if (deleting && text.length === 0) {
       timeout = setTimeout(() => {
         setDeleting(false);
@@ -157,19 +168,25 @@ function Header() {
           <div className="mt-10 flex flex-wrap gap-4">
             <button
               className="rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-500 px-8 py-4 font-bold text-slate-900 transition-transform duration-300 hover:scale-105"
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 35px #10b981")}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.boxShadow = "0 0 35px #10b981")
+              }
               onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
               style={{ transition: "all .3s" }}
             >
               Layihələrə bax
             </button>
-            <button
+            <a
+              href="/Asildar-Hajiyev-CV.pdf"
+              download="Asildar-Hajiyev-CV.pdf"
               className="rounded-xl border border-cyan-400 px-8 py-4 text-cyan-300 transition-all duration-300 hover:bg-cyan-400 hover:text-black"
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 0 30px #06b6d4")}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.boxShadow = "0 0 30px #06b6d4")
+              }
               onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
             >
               CV yüklə
-            </button>
+            </a>
           </div>
 
           <div className="mt-10 flex gap-3">

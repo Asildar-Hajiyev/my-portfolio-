@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import CommandPalette from "../pages/Commandpalette";
-
 
 const LINKS = [
   { id: "about", label: "Haqqımda" },
@@ -99,8 +99,8 @@ function Navbar() {
             boxShadow: scrolled ? "0 8px 30px rgba(0,0,0,.35)" : "none",
           }}
         >
-          <a
-            href="#"
+          <Link
+            to="/"
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -110,7 +110,7 @@ function Navbar() {
             <span className="text-gray-500">~/</span>
             asildar
             <span className="animate-pulse text-cyan-300">_</span>
-          </a>
+          </Link>
 
           <div ref={containerRef} className="relative hidden items-center gap-1 md:flex">
             <span
@@ -123,10 +123,10 @@ function Navbar() {
               }}
             />
             {LINKS.map((link) => (
-              <a
+              <Link
                 key={link.id}
                 ref={(el) => (linkRefs.current[link.id] = el)}
-                href={`#${link.id}`}
+                to={`/#${link.id}`}
                 onClick={(e) => handleClick(e, link.id)}
                 className="relative z-10 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300"
                 style={{
@@ -134,7 +134,7 @@ function Navbar() {
                 }}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -180,9 +180,9 @@ function Navbar() {
           }}
         >
           {LINKS.map((link) => (
-            <a
+            <Link
               key={link.id}
-              href={`#${link.id}`}
+              to={`/#${link.id}`}
               onClick={(e) => handleClick(e, link.id)}
               className="rounded-xl px-4 py-3 text-sm font-medium transition-colors duration-300"
               style={{
@@ -192,7 +192,7 @@ function Navbar() {
               }}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
       )}
