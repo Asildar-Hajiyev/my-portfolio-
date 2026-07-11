@@ -1,122 +1,12 @@
-const PROJECTS = [
-  {
-    id: 1,
-    title: "Superfon",
-    description: "Div Academy Final Project",
-    tags: ["React", "Tailwind", "API", "Node"],
-    url: "https://div-superfon-m8vg.vercel.app/",
-  },
-  {
-    id: 2,
-    title: "YerTap",
-    description: "Aradığınız hər bir yeri asanlıqla tapın",
-    tags: ["React"],
-    url: "https://yer-tap.vercel.app/",
-  },
-  {
-    id: 3,
-    title: "Bigspring",
-    description: "Simple page.",
-    tags: ["Js", "Tailwind"],
-    url: "https://bigspring-five.vercel.app/",
-  },
-  {
-    id: 4,
-    title: "Bigspring",
-    description: "JavaScript-product-filter",
-    tags: ["Js", "Tailwind"],
-    url: "https://javascript-product-filter.vercel.app/",
-  },
-  {
-    id: 5,
-    title: "Calculator",
-    description: "Calculate-discounted",
-    tags: ["Js", "Tailwind"],
-    url: "https://task-calculate-discounted-product-p.vercel.app/",
-  },
-  {
-    id: 6,
-    title: "Tropika",
-    description: "Sade single page",
-    tags: ["Js", "Tailwind"],
-    url: "https://tropika-pied.vercel.app/",
-  },
-  {
-    id: 7,
-    title: "Pagination",
-    description: "Pagination",
-    tags: ["Js", "Tailwind"],
-    url: "https://js-pagination-app.vercel.app/",
-  },
-  {
-    id: 8,
-    title: "Login-verification",
-    description: "Login-verification",
-    tags: ["Js", "Tailwind"],
-    url: "https://javascript-login-verification2.vercel.app/",
-  },
-  {
-    id: 8,
-    title: "Avers",
-    description: "Aver daxilinde admin panel qosulmusdur",
-    tags: ["Js", "Tailwind"],
-    url: "https://avers-page-v3ch.vercel.app/",
-  },
-  {
-    id: 9,
-    title: "Avers",
-    description: "Aver daxilinde admin panel qosulmusdur",
-    tags: ["Js", "Tailwind"],
-    url: "https://avers-page-v3ch.vercel.app/",
-  },
-  {
-    id: 10,
-    title: "Funksional sayt",
-    description: "Add to cart wishlist islekdir",
-    tags: ["Js", "Tailwind"],
-    url: "https://site1-functionality.vercel.app/",
-  },
-  {
-    id: 11,
-    title: "Abb kalkulyator",
-    description: "Js Task",
-    tags: ["Js", "Tailwind"],
-    url: "https://abb-calculator-navy.vercel.app/",
-  },
-  {
-    id: 12,
-    title: "Property",
-    description: "Kurs Css imtahani",
-    tags: ["Js", "Tailwind"],
-    url: "https://property-carousel.vercel.app/",
-  },
-  {
-    id: 13,
-    title: "Health-center",
-    description: "Kurs Css Task",
-    tags: ["Html", "Css"],
-    url: "https://health-center-task2.vercel.app/",
-  },
-  {
-    id: 14,
-    title: "Dento",
-    description: "Kurs Css Task",
-    tags: ["Html", "Css"],
-    url: "https://dento-1.vercel.app/",
-  },
-  {
-    id: 15,
-    title: "Ingress",
-    description: "Ingress Academy 2023 Final Project",
-    tags: ["React", "Tailwind"],
-    url: "https://ingress-ac-final-project.vercel.app/",
-  },
-];
-function getScreenshotUrl(url) {
-  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=600`;
-}
+import { useContext } from "react";
+import { DATA } from "../context/AppContext";
+
+// function getScreenshotUrl(url) {
+//   return ;
+// }
 
 function Projects() {
+  const {data}= useContext(DATA)
   return (
     <section id="projects" className="relative z-10 px-6 py-28">
       <div className="mx-auto max-w-5xl">
@@ -128,14 +18,14 @@ function Projects() {
         </h2>
 
         <div className="grid gap-8 md:grid-cols-3 ">
-          {PROJECTS.map((project) => (
+          {data?.map((project) => (
             <div
               key={project.title}
               className="group rounded-2xl border border-white/10 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2"
               style={{ backgroundColor: "rgba(255,255,255,.05)" }}
             >
               <img
-                src={getScreenshotUrl(project.url)}
+                src={`https://s.wordpress.com/mshots/v1/${encodeURIComponent(project.url)}?w=600`}
                 alt={`${project.title} layihəsinin ekran görüntüsü`}
                 className="mb-4 h-36 w-full rounded-xl object-cover cursor-pointer"
                 loading="lazy"
@@ -159,9 +49,26 @@ function Projects() {
                 ))}
               </div>
 
-              <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300 cursor-pointer">
+             <div className="flex w-full items-center justify-between">
+               <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300 cursor-pointer"
+              >
                 Ətraflı bax →
               </a>
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-semibold text-gray-400 transition-colors hover:text-cyan-300"
+                >
+                  GitHub →
+                </a>
+              )}
+             </div>
             </div>
           ))}
         </div>
