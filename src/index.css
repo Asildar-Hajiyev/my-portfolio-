@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@keyframes gradient {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
+
+.animate-gradient {
+  background-size: 300%;
+  animation: gradient 5s linear infinite alternate;
+}
