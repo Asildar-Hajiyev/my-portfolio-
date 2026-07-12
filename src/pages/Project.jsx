@@ -80,7 +80,7 @@ function Projects() {
           <div className="mt-14 flex justify-center ">
             <button
               onClick={handleLoadMore}
-              className="flex items-center cursor-pointer gap-2 rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-gray-300 backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:text-cyan-300"
+              className="flex items-center cursor-pointer gap-2 rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-gray-300 backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:text-cyan-300 active:scale-95"
               style={{ backgroundColor: "rgba(255,255,255,.04)" }}
             >
               Daha çox göstər
