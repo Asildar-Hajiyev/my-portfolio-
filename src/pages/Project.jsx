@@ -18,7 +18,7 @@ function Projects() {
         </h2>
 
         <div className="grid gap-8 md:grid-cols-3 ">
-          {data?.map((project) => (
+          {data?.projects?.map((project) => (
             <div
               key={project.title}
               className="group rounded-2xl border border-white/10 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2"
