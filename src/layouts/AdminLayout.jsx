@@ -1,9 +1,7 @@
 
 function AdminLayout() {
   return (
-    <div>
-      
-    </div>
+    <div>AdminLayout</div>
   )
 }
 
