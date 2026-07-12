@@ -5,7 +5,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 const EMAILJS_SERVICE_ID = "service_g2wazfv";
 const EMAILJS_TEMPLATE_ID = "template_6sk62nq";
 const EMAILJS_PUBLIC_KEY = "QoDFJc9nOyH4C_POM";
-const RECAPTCHA_SITE_KEY = "6LdPJFAtAAAAAGBQQ6glwPHu7Z4opCsjRux1hxLr";
+const RECAPTCHA_SITE_KEY = "6LeyJ1AtAAAAAAIPreFLq7XrJBzqLw8mBAnS-a5Yu";
 
 function validate(fields) {
   const errors = {};
