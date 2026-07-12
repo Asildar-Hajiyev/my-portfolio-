@@ -1,12 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DATA } from "../context/AppContext";
 
-// function getScreenshotUrl(url) {
-//   return ;
-// }
-
 function Projects() {
-  const {data}= useContext(DATA)
+  const [visibleCount, setVisibleCount] = useState(6);
+  const { data } = useContext(DATA);
+
+  const projects = data?.projects || [];
+  const remaining = projects.length - visibleCount;
+
+  const handleLoadMore = () => setVisibleCount((c) => c + 6);
+
   return (
     <section id="projects" className="relative z-10 px-6 py-28">
       <div className="mx-auto max-w-5xl">
@@ -17,10 +20,10 @@ function Projects() {
           Seçilmiş <span className="text-emerald-400">işlər</span>
         </h2>
 
-        <div className="grid gap-8 md:grid-cols-3 ">
-          {data?.projects?.map((project) => (
+        <div className="grid gap-8 md:grid-cols-3">
+          {projects.slice(0, visibleCount).map((project) => (
             <div
-              key={project.title}
+              key={project.id}
               className="group rounded-2xl border border-white/10 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-2"
               style={{ backgroundColor: "rgba(255,255,255,.05)" }}
             >
@@ -49,29 +52,45 @@ function Projects() {
                 ))}
               </div>
 
-             <div className="flex w-full items-center justify-between">
-               <a
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300 cursor-pointer"
-              >
-                Ətraflı bax →
-              </a>
-              {project.github && (
+              <div className="flex w-full items-center justify-between">
                 <a
-                  href={project.github}
+                  href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-semibold text-gray-400 transition-colors hover:text-cyan-300"
+                  className="text-sm font-semibold text-emerald-400 transition-colors hover:text-emerald-300 cursor-pointer"
                 >
-                  GitHub →
+                  Ətraflı bax →
                 </a>
-              )}
-             </div>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-gray-400 transition-colors hover:text-cyan-300"
+                  >
+                    GitHub →
+                  </a>
+                )}
+              </div>
             </div>
           ))}
         </div>
+
+        {remaining > 0 && (
+          <div className="mt-14 flex justify-center ">
+            <button
+              onClick={handleLoadMore}
+              className="flex items-center cursor-pointer gap-2 rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-gray-300 backdrop-blur-xl transition-all duration-300 hover:border-cyan-400 hover:text-cyan-300"
+              style={{ backgroundColor: "rgba(255,255,255,.04)" }}
+            >
+              Daha çox göstər
+              <span className="text-xs text-gray-500">({remaining} qalıb)</span>
+              <span className="transition-transform duration-300 group-hover:translate-y-0.5">
+                ↓
+              </span>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

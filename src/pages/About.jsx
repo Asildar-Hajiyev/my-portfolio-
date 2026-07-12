@@ -2,7 +2,6 @@ import Asildar from '../assets/IMG_2297.PNG'
 
 
 const FACTS = [
-  { label: "Layihə", value: "15+" },
   { label: "Frontend təcrübəsi", value: "2025-dən" },
   { label: "Təhsil", value: "Magistr" },
   { label: "Öyrənmə", value: "Davamlı" },
@@ -66,7 +65,6 @@ function About() {
             </div>
           </div>
 
-          {/* Right: bio */}
           <div className="order-1 lg:order-2">
             <p className="mb-6 text-2xl font-semibold leading-snug text-white">
               Kompüter Elmləri üzrə{" "}
