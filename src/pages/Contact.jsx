@@ -1,11 +1,9 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import ReCAPTCHA from "react-google-recaptcha";
 
 const EMAILJS_SERVICE_ID = "service_g2wazfv";
 const EMAILJS_TEMPLATE_ID = "template_6sk62nq";
 const EMAILJS_PUBLIC_KEY = "QoDFJc9nOyH4C_POM";
-const RECAPTCHA_SITE_KEY = "6LeyJ1AtAAAAAAIPreFLq7XrJBzqLw8mBAnS-a5Yu";
 
 function validate(fields) {
   const errors = {};
@@ -34,8 +32,6 @@ function Contact() {
   const [honeypot, setHoneypot] = useState("");
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
-  const [captchaToken, setCaptchaToken] = useState(null);
-  const [captchaError, setCaptchaError] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,12 +53,6 @@ function Contact() {
     setErrors(foundErrors);
     if (Object.keys(foundErrors).length > 0) return;
 
-    if (!captchaToken) {
-      setCaptchaError(true);
-      return;
-    }
-    setCaptchaError(false);
-
     setStatus("sending");
     try {
       await emailjs.send(
@@ -72,13 +62,11 @@ function Contact() {
           from_name: fields.name,
           from_email: fields.email,
           message: fields.message,
-          "g-recaptcha-response": captchaToken,
         },
         { publicKey: EMAILJS_PUBLIC_KEY }
       );
       setStatus("success");
       setFields({ name: "", email: "", message: "" });
-      setCaptchaToken(null);
     } catch (err) {
       console.error("Email göndərilə bilmədi:", err);
       setStatus("error");
@@ -162,23 +150,6 @@ function Contact() {
             />
             {errors.message && (
               <p className="mt-1 text-xs text-red-400">{errors.message}</p>
-            )}
-          </div>
-
-          <div>
-            <ReCAPTCHA
-              sitekey={RECAPTCHA_SITE_KEY}
-              onChange={(token) => {
-                setCaptchaToken(token);
-                setCaptchaError(false);
-              }}
-              onExpired={() => setCaptchaToken(null)}
-              theme="dark"
-            />
-            {captchaError && (
-              <p className="mt-1 text-xs text-red-400">
-                Zəhmət olmasa "Mən robot deyiləm" qutusunu işarələ.
-              </p>
             )}
           </div>
 
