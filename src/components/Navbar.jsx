@@ -9,6 +9,12 @@ const LINKS = [
   { id: "contact", label: "Əlaqə" },
 ];
 
+const LANGUAGES = [
+  { code: "AZ", label: "Azərbaycan" },
+  { code: "EN", label: "English" },
+  { code: "RU", label: "Русский" },
+];
+
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -16,8 +22,12 @@ function Navbar() {
   const [progress, setProgress] = useState(0);
   const [active, setActive] = useState("about");
   const [indicator, setIndicator] = useState({ left: 0, width: 0 });
+  const [lang, setLang] = useState("AZ");
+  const [langIndicator, setLangIndicator] = useState({ left: 0, width: 0 });
   const linkRefs = useRef({});
   const containerRef = useRef(null);
+  const langRefs = useRef({});
+  const langContainerRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -75,6 +85,24 @@ function Navbar() {
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
   }, [active]);
+
+  useEffect(() => {
+    const measureLang = () => {
+      const el = langRefs.current[lang];
+      const container = langContainerRef.current;
+      if (el && container) {
+        const elRect = el.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        setLangIndicator({
+          left: elRect.left - containerRect.left,
+          width: elRect.width,
+        });
+      }
+    };
+    measureLang();
+    window.addEventListener("resize", measureLang);
+    return () => window.removeEventListener("resize", measureLang);
+  }, [lang]);
 
   const handleClick = (e, id) => {
     e.preventDefault();
@@ -138,6 +166,36 @@ function Navbar() {
             ))}
           </div>
 
+          <div className="mx-1 hidden h-5 w-px bg-white/10 md:block" />
+
+          {/* Dil seçimi — seqmentli keçid */}
+          <div
+            ref={langContainerRef}
+            className="relative hidden items-center rounded-full bg-white/5 p-0.5 md:flex"
+          >
+            <span
+              className="absolute top-0.5 bottom-0.5 rounded-full bg-white/10 transition-all duration-300 ease-out"
+              style={{
+                left: langIndicator.left,
+                width: langIndicator.width,
+              }}
+            />
+            {LANGUAGES.map((l) => (
+              <button
+                key={l.code}
+                ref={(el) => (langRefs.current[l.code] = el)}
+                onClick={() => setLang(l.code)}
+                title={l.label}
+                className="relative z-10 rounded-full px-2.5 py-1.5 font-mono text-[11px] font-semibold transition-colors duration-300"
+                style={{
+                  color: lang === l.code ? "#34d399" : "#6b7280",
+                }}
+              >
+                {l.code}
+              </button>
+            ))}
+          </div>
+
           <button
             onClick={() => setPaletteOpen(true)}
             className="ml-1 hidden items-center gap-1.5 rounded-full border border-white/10 px-3 py-2 text-xs text-gray-400 transition-colors duration-300 hover:border-cyan-400 hover:text-cyan-300 md:flex"
@@ -194,6 +252,22 @@ function Navbar() {
               {link.label}
             </Link>
           ))}
+
+          <div className="mx-4 mt-2 flex items-center justify-center gap-1 rounded-full bg-white/5 p-1">
+            {LANGUAGES.map((l) => (
+              <button
+                key={l.code}
+                onClick={() => setLang(l.code)}
+                className="flex-1 rounded-full py-2 font-mono text-xs font-semibold transition-colors duration-300"
+                style={{
+                  color: lang === l.code ? "#0f172a" : "#9ca3af",
+                  backgroundColor: lang === l.code ? "#34d399" : "transparent",
+                }}
+              >
+                {l.code}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 

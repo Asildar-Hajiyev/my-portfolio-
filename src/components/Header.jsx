@@ -8,6 +8,12 @@ const PHRASES = [
   "Clean Code. Clean UI.",
 ];
 
+const LANGUAGES = [
+  { code: "az", label: "AZ" },
+  { code: "en", label: "EN" },
+  { code: "ru", label: "RU" },
+];
+
 function useTypewriter(
   phrases,
   typeSpeed = 55,
@@ -66,17 +72,6 @@ function Header() {
 
   return (
     <section className="relative z-10 flex min-h-screen items-center px-6 pt-48 pb-20">
-      <style>{`
-        @keyframes gradientShift {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient-text {
-          background-size: 200% 200%;
-          animation: gradientShift 4s ease infinite;
-        }
-      `}</style>
-
       <div className="mx-auto grid max-w-6xl items-center gap-16 lg:grid-cols-2">
         <div>
           <div

@@ -63,7 +63,7 @@ function Contact() {
           from_email: fields.email,
           message: fields.message,
         },
-        { publicKey: EMAILJS_PUBLIC_KEY }
+        { publicKey: EMAILJS_PUBLIC_KEY },
       );
       setStatus("success");
       setFields({ name: "", email: "", message: "" });
@@ -86,7 +86,11 @@ function Contact() {
           Layihən var və köməyə ehtiyacın olur? Yaz, danışaq.
         </p>
 
-        <form className="mx-auto grid max-w-xl gap-4 text-left" onSubmit={handleSubmit} noValidate>
+        <form
+          className="mx-auto grid max-w-xl gap-4 text-left"
+          onSubmit={handleSubmit}
+          noValidate
+        >
           {/* Botlar üçün gizli tələ - insanlar görmür */}
           <input
             type="text"
@@ -145,7 +149,9 @@ function Contact() {
               className="w-full rounded-xl border px-5 py-3 text-white placeholder:text-gray-500 focus:outline-none"
               style={{
                 backgroundColor: "rgba(255,255,255,.05)",
-                borderColor: errors.message ? "#f87171" : "rgba(255,255,255,.1)",
+                borderColor: errors.message
+                  ? "#f87171"
+                  : "rgba(255,255,255,.1)",
               }}
             />
             {errors.message && (
@@ -175,7 +181,7 @@ function Contact() {
 
         <div className="mt-10 flex justify-center">
           <a
-            href="https://wa.me/994XXXXXXXXX?text=Salam%2C%20portfolionuz%20il%C9%99%20maraqland%C4%B1m"
+            href="https://wa.me/994504252262"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-gray-300 backdrop-blur-xl transition-all duration-300 hover:border-emerald-400 hover:text-emerald-300"
@@ -189,13 +195,22 @@ function Contact() {
         </div>
 
         <div className="mt-6 flex justify-center gap-6 text-gray-400">
-          <a href="#" className="transition-colors hover:text-cyan-300">
+          <a
+            href="https://github.com/Asildar-Hajiyev"
+            className="transition-colors hover:text-cyan-300"
+          >
             GitHub
           </a>
-          <a href="#" className="transition-colors hover:text-cyan-300">
+          <a
+            href="https://linkedin.com/in/asildarhajiyev"
+            className="transition-colors hover:text-cyan-300"
+          >
             LinkedIn
           </a>
-          <a href="#" className="transition-colors hover:text-cyan-300">
+          <a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=haciyev2262@gmail.com&su=Salam&body=Sizinl%C9%99%20%C9%99laq%C9%99%20saxlamaq%20ist%C9%99yir%C9%99m"
+            className="transition-colors hover:text-cyan-300"
+          >
             Email
           </a>
         </div>
