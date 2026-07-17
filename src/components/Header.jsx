@@ -122,8 +122,8 @@ function Header() {
               Layihələrə bax
             </Link>
             <a
-              href="/public/cv/Asildar_Haciyev_up.pdf"
-              download="Asildar_Haciyev_up"
+              href="/cv/Asildar_Haciyev_up.pdf"
+              download="Asildar_Haciyev_up.pdf"
               className="rounded-xl border border-cyan-400 px-8 py-4 text-cyan-300 transition-all duration-300 hover:bg-cyan-400 hover:text-black"
               onMouseEnter={(e) =>
                 (e.currentTarget.style.boxShadow = "0 0 30px #06b6d4")
